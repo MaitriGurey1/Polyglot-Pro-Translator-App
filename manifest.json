@@ -8,7 +8,7 @@
   "uid": "",
   "ui_location": {
     "signed": false,
-    "base_url": "https://polyglot-pro-translator-app-2.eu-contentstackapps.com",
+    "base_url": "https://polyglot-pro-translator-app.vercel.app",
     "locations": [
       {
         "type": "cs.cm.stack.custom_field",
@@ -109,7 +109,7 @@
     ]
   },
   "hosting": {
-    "provider": "launch",
-    "deployment_url": "https://polyglot-pro-translator-app-2.eu-contentstackapps.com"
+    "provider": "external",
+    "deployment_url": "https://polyglot-pro-translator-app.vercel.app"
   }
 }
