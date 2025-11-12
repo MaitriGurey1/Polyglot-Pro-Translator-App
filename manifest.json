@@ -8,7 +8,7 @@
   "uid": "",
   "ui_location": {
     "signed": false,
-    "base_url": "http://localhost:3000",
+    "base_url": "https://polyglot-pro-translator-app.eu-contentstackapps.com",
     "locations": [
       {
         "type": "cs.cm.stack.custom_field",
@@ -109,7 +109,7 @@
     ]
   },
   "hosting": {
-    "provider": "external",
-    "deployment_url": "http://localhost:3000"
+    "provider": "launch",
+    "deployment_url": "https://polyglot-pro-translator-app.eu-contentstackapps.com"
   }
 }
