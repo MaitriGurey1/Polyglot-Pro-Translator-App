@@ -50,8 +50,6 @@ export function useTranslation(): UseTranslationResult {
       for (let localeIndex = 0; localeIndex < selectedLocales.length; localeIndex++) {
         const targetLocale = selectedLocales[localeIndex];
 
-        console.log(`\n🌍 Processing locale: ${targetLocale.name} (${targetLocale.code})`);
-
         // Step 1: Translate all selected fields
         const translatedFields: Record<string, any> = {};
 
@@ -60,7 +58,6 @@ export function useTranslation(): UseTranslationResult {
           const originalValue = getNestedValue(entryData, field.parentPath || "", field.uid);
 
           if (typeof originalValue === "string" && originalValue.trim().length > 0) {
-            console.log(`  Translating field "${field.uid}" to ${targetLocale.code}...`);
             const translatedValue = await translateText(originalValue, targetLocale, config);
 
             // Build the translated fields object (only top-level fields for now)
@@ -70,13 +67,6 @@ export function useTranslation(): UseTranslationResult {
               // For nested fields, store with field uid
               translatedFields[field.uid] = translatedValue;
             }
-
-            console.log(
-              `  ✅ Translated: "${originalValue.substring(0, 50)}..." → "${translatedValue.substring(
-                0,
-                50
-              )}..."`
-            );
           }
 
           // Update progress
@@ -91,7 +81,6 @@ export function useTranslation(): UseTranslationResult {
         }
 
         // Step 2: Save translated fields
-        console.log(`💾 Saving translated fields to ${targetLocale.code}...`);
         const updated = await updateLocalizedEntry(
           entryUid,
           contentTypeUid,
@@ -108,8 +97,6 @@ export function useTranslation(): UseTranslationResult {
               : s
           )
         );
-
-        console.log(`${updated ? "✅ Success" : "❌ Failed"}: ${targetLocale.name}\n`);
       }
 
       // Show success notification

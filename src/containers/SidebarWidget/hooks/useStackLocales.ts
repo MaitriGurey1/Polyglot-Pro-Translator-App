@@ -20,7 +20,6 @@ export function useStackLocales(appSDK: any) {
 
         // Use the official app-sdk method to get locales
         const localesData = await appSDK.stack.getLocales();
-        console.log("📍 Stack Locales from getLocales():", localesData);
 
         // Access the locales array from the returned object
         const localesArray = (localesData as any)?.locales;
@@ -39,7 +38,6 @@ export function useStackLocales(appSDK: any) {
             };
           });
 
-          console.log("✅ Processed locales:", processedLocales);
           setLocales(processedLocales);
         } else {
           console.warn("⚠️ Invalid locales data format");

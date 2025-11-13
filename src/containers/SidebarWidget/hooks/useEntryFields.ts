@@ -41,13 +41,10 @@ export function useEntryFields(appSDK: any): UseEntryFieldsResult {
         const displayInfo = getLocaleDisplayInfo(localeCode);
         setCurrentLocaleDisplay(displayInfo.name);
 
-        console.log("🌍 Current Entry Locale:", localeCode, "->", displayInfo.name);
-
         const contentType = (entry as any).content_type;
 
         if (contentType && contentType.schema) {
           const translatableFields = extractTranslatableFields(contentType.schema);
-          console.log("✅ Loaded translatable fields from schema (including nested):", translatableFields);
           setAvailableFields(translatableFields);
         } else {
           console.warn("⚠️ Could not access content type schema, using fallback method");

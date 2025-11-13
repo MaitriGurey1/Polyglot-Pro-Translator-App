@@ -91,9 +91,6 @@ const EntrySidebarExtension = () => {
     const entryUid = (entry as any)?.uid;
     const contentTypeUid = appSDK?.location?.SidebarWidget?.entry?.content_type?.uid;
 
-    console.log("🔑 Entry UID:", entryUid);
-    console.log("🔑 Content Type UID:", contentTypeUid);
-
     if (!entryUid || !contentTypeUid) {
       setError("Unable to get entry information");
       return;
@@ -131,6 +128,45 @@ const EntrySidebarExtension = () => {
       setError(err.message);
     }
   };
+
+  // Show loading/error state if SDK not available
+  if (!appSDK) {
+    return (
+      <div
+        style={{
+          padding: "20px",
+          fontFamily: "Inter, sans-serif",
+          textAlign: "center",
+          color: "#991b1b",
+        }}
+      >
+        <h2 style={{ fontSize: "18px", fontWeight: "700", marginBottom: "12px" }}>
+          ⚠️ App Not Loaded Correctly
+        </h2>
+        <p style={{ fontSize: "14px", color: "#6b7280", marginBottom: "16px" }}>
+          This app must be accessed from within Contentstack.
+        </p>
+        <div
+          style={{
+            padding: "16px",
+            backgroundColor: "#fef2f2",
+            border: "1px solid #fecaca",
+            borderRadius: "8px",
+            textAlign: "left",
+            fontSize: "13px",
+          }}
+        >
+          <strong>How to access this app:</strong>
+          <ol style={{ marginTop: "8px", paddingLeft: "20px" }}>
+            <li>Go to your Contentstack dashboard</li>
+            <li>Navigate to any stack</li>
+            <li>Open an entry</li>
+            <li>Look for "Content Translator" in the sidebar</li>
+          </ol>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div

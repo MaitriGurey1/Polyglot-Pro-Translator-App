@@ -115,28 +115,6 @@ export async function updateLocalizedEntry(
   try {
     const url = `${config.apiBaseUrl}/v3/content_types/${contentTypeUid}/entries/${entryUid}?locale=${targetLocale}`;
 
-    // Log request details for debugging
-    console.log(`\n🔗 === UPDATE ENTRY REQUEST ===`);
-    console.log(`URL: ${url}`);
-    console.log(`Method: PUT`);
-    console.log(`Headers:`, {
-      api_key: config.stackApiKey,
-      authorization: config.managementToken
-        ? `${config.managementToken.substring(0, 20)}...${config.managementToken.substring(
-            config.managementToken.length - 5
-          )}`
-        : "MISSING",
-      "Content-Type": "application/json",
-    });
-    console.log(
-      `Token Full Length: ${config.managementToken?.length || 0} chars (expected 40+)`
-    );
-    console.log(
-      `Token Starts With: ${config.managementToken?.substring(0, 3) || "N/A"} (should be 'cs')`
-    );
-    console.log(`Body:`, JSON.stringify({ entry: translatedFields }, null, 2));
-    console.log(`=== END REQUEST ===\n`);
-
     const response = await fetch(url, {
       method: "PUT",
       headers: {
@@ -148,8 +126,6 @@ export async function updateLocalizedEntry(
         entry: translatedFields,
       }),
     });
-
-    console.log(`📊 Update response status: ${response.status} ${response.statusText}`);
 
     if (!response.ok) {
       const contentType = response.headers.get("content-type");
@@ -172,8 +148,6 @@ export async function updateLocalizedEntry(
       console.error(`Failed to update localized entry in ${targetLocale}: ${errorMessage}`);
       return false;
     }
-
-    console.log(`✅ Entry updated in ${targetLocale}`);
     return true;
   } catch (error) {
     console.error(`❌ Error updating localized entry:`, error);
