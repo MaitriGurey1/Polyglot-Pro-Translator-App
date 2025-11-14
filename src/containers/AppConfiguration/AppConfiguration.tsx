@@ -76,9 +76,9 @@ const AppConfigurationExtension: React.FC = () => {
                   style={{ padding: "8px" }}
                 >
                   <option value="gemini-2.5-flash">gemini-2.5-flash (Recommended)</option>
-                  <option value="gemini-1.5-flash">gemini-1.5-flash</option>
-                  <option value="gemini-1.5-pro">gemini-1.5-pro</option>
-                  <option value="gemini-pro">gemini-pro</option>
+                  <option value="gemini-2.5-pro-preview-03-25h">gemini-1.5-flash</option>
+                  <option value="gemini-2.5-flash">gemini-2.5-flash</option>
+                  <option value="gemini-2.5-flash-lite-preview-06-17">gemini-2.5-flash-lite-preview-06-17</option>
                 </select>
               </div>
             </div>
